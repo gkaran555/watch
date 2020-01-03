@@ -1,0 +1,87 @@
+
+
+$zuta: #F7B74F;
+$svetloplava: #87C5EC;
+$tamnoplava: #4A79BC;
+$siva: #575756;
+$tbela: #F7F7F7;
+$crna: #2E2D2C;
+
+* { margin: 0; padding: 0;}
+body { margin:0; } 
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+html {box-sizing: border-box;}
+
+@font-face {
+    font-family: FontAwesome5ProLight;
+    src: url('/font/Font Awesome 5 Pro Light.ttf');
+}
+@font-face {
+    font-family: ButlerBold;
+    src: url('/font/Butler_Bold.otf');
+}
+@font-face {
+    font-family: ButlerBlack;
+    src: url('/font/Butler_Black.otf');
+}
+
+p {
+    font-size: 1em;
+    font-family: FontAwesome5ProLight;
+    margin: 0;
+}
+
+
+.container {
+    max-width: 1920px;
+    margin: 0rem auto;
+    padding-right: 5rem;
+    padding-left: 5rem;
+    @media only screen and (max-width: 1120px) {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.btn {
+    display: block;
+    text-align: center;
+    width: 9em;
+    border-radius: 5px;
+    background-color:transparent;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.4s ease-in-out;
+    z-index: 10;
+    font-family: Montserrat-Medium;
+    font-size: 0.875em;
+    &:focus {outline: 0;}
+    
+ }
+
+
+
+ 
+
+  
+
+
+
+  
+ 
+  
+ 
+  
+ 
+  

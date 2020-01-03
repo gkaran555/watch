@@ -5,19 +5,19 @@
             <image-slider :satovi=satovi >
              </image-slider>
         </div>
-        <div class="bimage"> </div>
+        <!-- <div class="bimage"> </div> -->
     </section>
 </template>
 
 <script>
 import ImageSlider from './ImageSlider.vue'
 export default {
-    props: {
+  props: {
     satovi: {
       type: Array
     }
   },
-    components: { ImageSlider },
+  components: { ImageSlider },
 
 }
 </script>
@@ -27,18 +27,18 @@ export default {
      display: flex;
      justify-content: space-around;
      height: 300px;
-     background-image: url("../assets/Layer 2 copy 3.png");
+    //  background-image: url("../assets/Layer 2 copy 3.png");
  }
  .bslider {
      flex: 1;
      
  }
- .bimage{
-     background-image: url("../assets/Layer 21 copy@2x.png");
-     background-repeat: no-repeat;
-     background-size: 100% 100%;
-     flex: 1;
- }
+//  .bimage{
+//      background-image: url("../assets/Layer 21 copy@2x.png");
+//      background-repeat: no-repeat;
+//      background-size: 100% 100%;
+//      flex: 1;
+//  }
 
 </style>
     

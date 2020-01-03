@@ -1,40 +1,52 @@
 <template>
   <div>
-    <header>
-      <nav>
-        <div>
-          <p>IPSUMS</p>
-          <p>DEV TEST TASK</p>      
-        </div>
-        <div>
-          <p>BROWSE PRODUCTS</p>
-        </div>
-        <div class="info">
-          <p>Company info</p>
-        </div>
-        <div>
-            <p>Total:{{ cartTotal }} </p>
-        </div>
-        <div>
-          <div class="total">
-            <button @click="opensidebar()">{{ cart.items.length }} </button>
-            <div class="noti" v-show="noticed">
-               <div v-if="cart.items.length > 0">
-                <button @click="turnoffNote()">x</button>
-                <div v-for="item in cart.items" :key='item.sat.id'>
-                  <p>{{ item.sat.name }} is added</p>
-                </div>
-                </div>
-            </div>
+
+    <nav v-if="mobileView" >  
+      <div class="container">
+        <div class="nav-main">
+          <div class="nav-logo">
+             <h1>LOGO</h1>
           </div>
-        </div> 
-        <div>
-          <p>Company Name</p>
-        </div> 
-      </nav>
-
-      <baner-section :satovi=satovi />
-
+          <div class="nav-total">
+            <div class="nav-total-cart">
+              <span>{{ cart.items.length }}</span>
+              <img @click="opensidebar()" :src="'/iconfinder_icon-ios7-cart-outline_211707.svg'" alt="">
+            </div>
+            <div class="nav-total-num">
+              <p>Total: </p>
+              <p class="nav-total-num-second">${{ cartTotal }} </p>
+            </div>
+               <div class="nav-noti" v-show="noticed">
+                  <span @click="turnoffNote()">x</span>
+                  <div class="nav-noti-lenght" v-if="cart.items.length > 0">
+                    <div class="nav-noti-item" v-for="item in cart.items" :key='item.sat.id'>
+                      <img :src="item.sat.avatar"/>
+                      <p>{{ item.sat.name }}</p>
+                    </div>
+                    <h1>Has been successfully added to your cart</h1>
+                  </div>
+                </div>
+          </div>
+          <div class="nav-mobile-icon"  @click="showNav = !showNav">
+             <img :src="[showNav ? '/iconfinder_free-09_463017.svg' : '/iconfinder_Menu2_1891012.svg']">
+          </div> 
+          </div>
+      </div>
+    </nav>
+    
+    <NavigationMobile class="navigation" :class="{'open':showNav}" />
+    
+    <NavigationDesk @opensidebar="opensidebar" 
+                    @turnoffNote="turnoffNote"
+                    :cartTotal="cartTotal"
+                    :items=cart.items 
+                    :noticed=noticed  
+                    v-if="!mobileView"/>
+    
+    <header>
+      <div class="container">
+        <baner-section :satovi=satovi />
+      </div>
     </header>
 
     <section class="product">
@@ -64,7 +76,7 @@
         </div>
       </div>
  
-    <div class="sidebar" v-show='toggleadd'>
+      <div class="sidebar" v-show='toggleadd'>
         <button @click="closeside()">close</button>
         <div v-if="cart.items.length > 0">
          <div class="sidebar-control" v-for="item in cart.items" :key='item.sat.id'>
@@ -79,7 +91,7 @@
         </div>
         <p>Total:{{ cartTotal }} </p>
          <button @click="checkout">Checkout</button>
-    </div>
+     </div>
 
     </section>
 
@@ -91,14 +103,19 @@
 <script>
 import BanerSection from './BanerSection.vue'
 import TagSection from './TagSection.vue'
+import NavigationDesk from "./NavigationDesk.vue";
+import NavigationMobile from "./NavigationMobile.vue";
+
 export default {
   name: 'app',
-  components: { BanerSection, TagSection},
+  components: { BanerSection, TagSection, NavigationMobile, NavigationDesk},
   data () {
     return {
       showSection: false,
       toggleadd: false,
       noticed: false,
+      mobileView: true,
+      showNav: false,
       opened: [],
       cart: {
         items: []
@@ -221,6 +238,14 @@ export default {
     },
     goToSat(satId) {
         this.$router.push(`/singlesat/${satId}`);
+    },
+    handleView() {
+      this.mobileView = window.innerWidth <= 1120;
+    },
+    handlenab() {
+      if (window.innerWidth >= 1120){
+      this.showNav = false
+      }
     }
   },
   computed: {
@@ -234,6 +259,12 @@ export default {
     taxAmount: function() {
         return ((this.cartTotal * 10) / 100);
     }
+   },
+   created() {
+      this.handleView();
+      window.addEventListener('resize', this.handleView);
+      this.handlenab();
+      window.addEventListener('resize', this.handlenab);
    }
     
   }
@@ -242,39 +273,11 @@ export default {
 
 
 <style lang="scss" scoped>
-#app {
-  max-width: 1230;
-  margin: 0px auto; 
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  text-align: center;
-}
-nav {
-  background: #f5f5de;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 77px;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  .info {
-    flex: 1;
-  }
-  .total {
-    position: relative;
-  }
-}
-.noti {
-  background-color: #a2ff00fa;
-  position: absolute;
-  bottom: -130px;
-  z-index: 11;
-  width: 200px;
-}
+@import '../assets/global.scss';
+@import '../assets/navbar.scss';
 
 
 section {
-  margin-top: 80px;
   position: relative;
 }
 
@@ -322,5 +325,17 @@ section {
     display: flex;
     justify-content: space-around;
   }
+}
+
+.navigation {
+  position: fixed;
+  width: 0px;
+  transition: 0.5s;
+  left: -100%;
+}
+.open {
+  width: 250px;
+  left: 0;
+  z-index: 30;
 }
 </style>
