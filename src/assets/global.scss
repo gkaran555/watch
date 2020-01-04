@@ -54,7 +54,10 @@ a {
 }
 
 header {
-    background-image: url("../assets/Layer 2 copy 3.png");
+    background-image: url("../assets/Layer 2 copy 3@2x.png");
+    @media only screen and (max-width: 650px) { 
+        background-image: url("../assets/Layer 2 copy 3.png");
+    }
     background-repeat: no-repeat;
     background-size: 100% 100%;
     width: 100%;
@@ -63,18 +66,20 @@ header {
 .btn {
     display: block;
     text-align: center;
-    width: 14em;
     border-radius: 5px;
     background-color:white;
     padding: 20px 45px;
     cursor: pointer;
     position: relative;
     transition: 0.4s ease-in-out;
-    z-index: 10;
     font-family: FontAwesome5ProLight;
-    font-size: 18px;
+    font-size: 15px;
     letter-spacing: 3px;
-    &:focus {outline: 0;}
+    @media only screen and (max-width: 650px) {
+        padding: 10px 25px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
     
  }
 

@@ -243,10 +243,10 @@ export default {
         this.$router.push(`/singlesat/${satId}`);
     },
     handleView() {
-      this.mobileView = window.innerWidth <= 1120;
+      this.mobileView = window.innerWidth <= 920;
     },
     handlenab() {
-      if (window.innerWidth >= 1120){
+      if (window.innerWidth >= 920){
       this.showNav = false
       }
     }

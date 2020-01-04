@@ -13,7 +13,8 @@
       </div>
 
         <div class="slide-control">
-            <a @click="prev" href='#'>Previous</a> || <a @click="next" href='#'>Next</a>
+            <a class="slide-control-first" @click="prev" href='#'>&#8592;</a> 
+            <a class="slide-control-second" @click="next" href='#'>&#8594;</a>
         </div>
 
   </div>
@@ -61,6 +62,7 @@ computed: {
     justify-content: flex-start;
     align-items: center;
     position: relative;
+    @media only screen and (max-width: 950px) {padding-left: 0px;}
 }
 .slide-info {
     display: flex;
@@ -87,7 +89,6 @@ computed: {
     }
     .slide-info-watch {
         display: flex;
-        // flex-wrap: wrap;
         justify-content: flex-start;
         align-items: center;
         p {margin-left: 37px;}
@@ -108,8 +109,13 @@ computed: {
     margin-right: auto;
     left: 0;
     right: 0;
-    @media only screen and (max-width: 1343px) {margin-right: 20%;}
-    @media only screen and (max-width: 1100px) {margin-right: 10%;}
+    @media only screen and (max-width: 1500px) { width: 230px;height: 400px;}
+    @media only screen and (max-width: 1343px) { margin-right: 20%; }
+    @media only screen and (max-width: 1100px) {
+        margin-right: 10%;
+        width: 200px;
+        height: 350px;
+    }
     img {width: 100%;}
 }
 
@@ -118,10 +124,26 @@ computed: {
     position: absolute;
     left: 45px;
     bottom: 0px;
+    display: flex;
+    @media only screen and (max-width: 1343px) { left: 0px; }
+    a {
+        width: 114px;
+        height: 114px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        color: #A9836B;
+        @media only screen and (max-width: 1500px) {
+            width: 70px;
+            height: 70px;
+            font-size: 25px;
+        }
+    }
+    .slide-control-first {background-color: #DDCCB8;}
+    .slide-control-second {background-color: white;}
 }
-img {
-    width: 100%
-}
+
 
 
 </style>
