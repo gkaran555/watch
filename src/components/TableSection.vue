@@ -124,6 +124,7 @@ export default {
       {
         "id": 1,
         "name": "AlFRED SUNG",
+         dis: "Venice Silver Automatic",
         "price": "100",
         "avatar": '/086c6f27 - transparent - no logo.png',
         "color": "red",
@@ -137,6 +138,7 @@ export default {
       {
         id: 2,
         name: "GERMAN",
+        dis: "Venice Silver Automatic",
         price: "200",
         avatar: '/Layer -1.png',
         color: "black",
@@ -150,6 +152,7 @@ export default {
       {
         "id": 3,
         "name": "WRANGLER",
+         dis: "Venice Silver Automatic",
         "price": "300",
         "avatar": '/hero-banner-8---alfred-sung-ultra-slim-collection-watch@2x.png',
         "color": "green",
