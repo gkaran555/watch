@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <nav v-if="mobileView" >  
+    <nav v-if="mobileView">  
       <div class="container">
         <div class="nav-main">
           <div class="nav-logo">
@@ -116,6 +116,7 @@ export default {
       noticed: false,
       mobileView: true,
       showNav: false,
+      scrolled: false,
       opened: [],
       cart: {
         items: []
@@ -249,7 +250,13 @@ export default {
       if (window.innerWidth >= 920){
       this.showNav = false
       }
-    }
+    },
+    // handleScroll () {
+    //   if (window.scrollY > 0){
+    //      this.scrolled = true;
+    //   }
+    //   // this.scrolled = window.scrollY > 0;
+    // }
   },
   computed: {
     cartTotal: function() {
@@ -268,7 +275,11 @@ export default {
       window.addEventListener('resize', this.handleView);
       this.handlenab();
       window.addEventListener('resize', this.handlenab);
-   }
+      // window.addEventListener('scroll', this.handleScroll);
+   },
+  //  destroyed () {
+  //   window.removeEventListener('scroll', this.handleScroll);
+  // }
     
   }
   
@@ -341,4 +352,9 @@ section {
   left: 0;
   z-index: 30;
 }
+
+// .scrolling {
+//   background-color: red;
+//   box-shadow: 0 0 10px rgba(0,0,0,0.4);   
+// }
 </style>

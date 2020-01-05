@@ -2,7 +2,7 @@
 <template>
     <section>
       <image-slider v-if="!mobileView" :satovi=satovi ></image-slider>
-      <image-mobileslider :satovi=satovi ></image-mobileslider>
+      <image-mobileslider v-if="mobileView" :satovi=satovi ></image-mobileslider>
     </section>
 </template>
 

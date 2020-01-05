@@ -62,11 +62,7 @@ computed: {
     position: relative;
    
 }
-// .slide-info {
-//     display: flex;
-//     z-index: 8;
-    
-// }
+
 
 .slide-info-text {
     display: flex;
@@ -87,18 +83,7 @@ computed: {
         letter-spacing: 3px;
         color: #A9836B;
     }
-    // .slide-info-watch {
-    //     display: flex;
-    //     justify-content: flex-start;
-    //     align-items: center;
-    //     p {margin-left: 37px;}
-    //     @media only screen and (max-width: 950px) {
-    //         flex-direction: column;
-    //         justify-content: center;
-    //         align-items: flex-start;
-    //         p {margin-left: 0px; margin-top: 20px;}
-    //     }  
-    // }
+
 }  
 
 .slide-info-img {

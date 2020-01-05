@@ -1,6 +1,6 @@
 <template>
    <div class="slide-main">
-      <div class="slide-info" v-for="number in [currentNumber]" :key='number'>
+      <div class="slide-info"  v-for="number in [currentNumber]" :key='number'>
           <div class="slide-info-text">
               <p>{{currentImage.name}}</p>
               <h6>{{currentImage.dis}}</h6>
@@ -13,10 +13,16 @@
       </div>
 
         <div class="slide-control">
-            <a class="slide-control-first" @click="prev" href='#'>&#8592;</a> 
-            <a class="slide-control-second" @click="next" href='#'>&#8594;</a>
+            <a class="slide-control-first" @mouseout="nexthoverout" 
+                                           @mouseover="prevhover" 
+                                           @click="prev" href='#'>&#8592;</a> 
+            <a class="slide-control-second" @mouseout="prevhoverout"
+                                            @mouseover="nexthover" 
+                                            @click="next" href='#'>&#8594;</a>
+            <div class="slide-control-third">
+                <img :src="currentImagehover.avatar"/>
+            </div>
         </div>
-
   </div>
 </template>
 
@@ -30,15 +36,30 @@ props: {
 data () {
     return {
        currentNumber: 0,
+       currentNumberhover: 0,
        timer: null
     }
 },
 methods: {
     next: function() {
         this.currentNumber += 1
+        this.currentNumberhover += 1
     },
     prev: function() {
         this.currentNumber -= 1
+        this.currentNumberhover -= 1
+    },
+    nexthover: function() {
+        this.currentNumberhover += 1
+    },
+    prevhover: function() {
+        this.currentNumberhover -= 1
+    },
+    nexthoverout: function() {
+        this.currentNumberhover = this.currentNumber
+    },
+    prevhoverout: function() {
+        this.currentNumberhover = this.currentNumber
     },
     goToSat(satId) {
         this.$router.push(`/singlesat/${satId}`);
@@ -46,7 +67,10 @@ methods: {
 },
 computed: {
     currentImage: function() {
-    return this.satovi[Math.abs(this.currentNumber) % this.satovi.length];
+       return this.satovi[Math.abs(this.currentNumber) % this.satovi.length];
+    },
+    currentImagehover: function() {
+       return this.satovi[Math.abs(this.currentNumberhover) % this.satovi.length];
     }
 }
 
@@ -142,6 +166,13 @@ computed: {
     }
     .slide-control-first {background-color: #DDCCB8;}
     .slide-control-second {background-color: white;}
+    .slide-control-third {
+        background-color: white;
+        width: 70px;
+        height: 70px;
+        padding: 5px;
+        img {width: 100%; height: 100%;}
+    }
 }
 
 
