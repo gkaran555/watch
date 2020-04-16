@@ -1,4 +1,5 @@
-# hello-world
+components for e-commerce site
+in progress
 
 ## Project setup
 ```
